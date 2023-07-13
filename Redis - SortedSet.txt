@@ -1,0 +1,18 @@
+Moscow 7000
+Sankt Peterburg 7300
+Ekaterinburg 6000
+Kazan - 5000
+Vladivostok - 23000
+Khabarovsk - 18000
+Murmansk - 15000
+Kaliningrad - 13000
+Rostov - 8000
+Krasnodar- 8500
+===========================
+zadd FlyTickets 23000 "Vladivostok"    - добавление элемента в Set
+
+zadd FlyTickets 18000 "Khabarovsk" 15000 "Murmansk"     - либо таким образом
+
+ZRANGE FlyTickets 0 2 WITHSCORES - выводим 3 элемента из списка (от наименьшего к большему)
+
+ZREVRANGE FlyTickets 0 2 WITHSCORES - выводим 3 элемента из списка (от большего к наименьшему)
