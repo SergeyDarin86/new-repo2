@@ -15,3 +15,5 @@ zadd FlyTickets 18000 "Khabarovsk" 15000 "Murmansk"     - либо таким о
 ZRANGE FlyTickets 0 2 WITHSCORES - выводим 3 элемента из списка (от наименьшего к большему)
 
 ZREVRANGE FlyTickets 0 2 WITHSCORES - выводим 3 элемента из списка (от большего к наименьшему)
+
+ZREVRANGE FlyTickets 0 2 WITHSCORES - выводим 3 элемента из списка (от большего к наименьшему) - Copy
