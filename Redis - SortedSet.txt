@@ -16,4 +16,4 @@ ZRANGE FlyTickets 0 2 WITHSCORES - выводим 3 элемента из спи
 
 ZREVRANGE FlyTickets 0 2 WITHSCORES - выводим 3 элемента из списка (от большего к наименьшему)
 
-ZREVRANGE FlyTickets 0 4 WITHSCORES - выводим 5 элемента из списка (от большего к наименьшему) - Copy
+ZREVRANGE FlyTickets 0 4 NEW PARAMETERS FOR CONFLICT - выводим 5 элемента из списка (от большего к наименьшему) - Copy
