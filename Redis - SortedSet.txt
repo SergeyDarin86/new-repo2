@@ -6,7 +6,6 @@ Vladivostok - 40000
 Khabarovsk - 18000
 Murmansk - 15000
 Kaliningrad - 13000
-Rostov - 8000
 Krasnodar- 11500
 ===========================
 zadd FlyTickets 23000 "Vladivostok"    - добавление элемента в Set
