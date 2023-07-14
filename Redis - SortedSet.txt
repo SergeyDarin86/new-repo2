@@ -8,6 +8,7 @@ Murmansk - 15000
 Kaliningrad - 13000
 Krasnodar- 11500
 Samara - 14800
+new fly direction
 ===========================
 zadd FlyTickets 23000 "Vladivostok"    - добавление элемента в Set
 
