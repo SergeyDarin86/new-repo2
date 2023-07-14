@@ -1,0 +1,176 @@
+Запуск сервера mongodb без докера
+============================
+
+C:\mongodb\mongodb-win32-x86_64-windows-6.0.3\bin\mongod -  прописываем данный путь в командной строке для запуска сервера MONGOD
+---------------------------------------------
+
+Либо просто зайти в папку bin и запустить сам файл MONGOD
+
+--------------------------------------------- Dependencies
+C:\Users\79198\IdeaProjects\Java_Projects\src\Alishev\SkillBoxExamples\MongoDB
+---------------------------------------------
+
+<dependencies>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.12.11</version>
+        </dependency>
+</dependencies>
+
+========================================= Пример запроса aggregate
+db.courses.aggregate([{
+	$lookup: {
+		from: "students", 
+		localField: "name", 
+		foreignField: "courses", 
+		as: "students_list"
+	}
+}])
+------------------------------------------------------------------------- результат запроса
+[
+  {
+    _id: ObjectId("6396e6daff1282ed2013441e"),
+    name: 'Java',
+    duration: 40,
+    students_list: [
+      {
+        _id: ObjectId("6393768819b7ccb0fe51512b"),
+        name: 'Petr Petrov',
+        courses: [ 'Java', 'Python' ]
+      },
+      {
+        _id: ObjectId("6396e540ff1282ed2013441d"),
+        name: 'Anton Sidorov',
+        courses: [ 'Java', 'Python' ]
+      }
+    ]
+  },
+  {
+    _id: ObjectId("6396e6daff1282ed2013441f"),
+    name: 'Python',
+    duration: 35,
+    students_list: [
+      {
+        _id: ObjectId("6393768819b7ccb0fe51512b"),
+        name: 'Petr Petrov',
+        courses: [ 'Java', 'Python' ]
+      },
+      {
+        _id: ObjectId("6396e540ff1282ed2013441d"),
+        name: 'Anton Sidorov',
+        courses: [ 'Java', 'Python' ]
+      }
+    ]
+  }
+]
+
+========================================== $unwind
+
+db.courses.aggregate([{
+     $lookup: {
+             from: "students",
+             localField: "name",
+             foreignField: "courses",
+             as: "students_list"
+     }
+},{$unwind: {path: "$students_list"}}])
+
+========================================== результат запроса
+
+[
+  {
+    _id: ObjectId("6396e6daff1282ed2013441e"),
+    name: 'Java',
+    duration: 40,
+    students_list: {
+      _id: ObjectId("6393768819b7ccb0fe51512b"),
+      name: 'Petr Petrov',
+      courses: [ 'Java', 'Python' ]
+    }
+  },
+  {
+    _id: ObjectId("6396e6daff1282ed2013441e"),
+    name: 'Java',
+    duration: 40,
+    students_list: {
+      _id: ObjectId("6396e540ff1282ed2013441d"),
+      name: 'Anton Sidorov',
+      courses: [ 'Java', 'Python' ]
+    }
+  },
+  {
+    _id: ObjectId("6396e6daff1282ed2013441f"),
+    name: 'Python',
+    duration: 35,
+    students_list: {
+      _id: ObjectId("6393768819b7ccb0fe51512b"),
+      name: 'Petr Petrov',
+      courses: [ 'Java', 'Python' ]
+    }
+  },
+  {
+    _id: ObjectId("6396e6daff1282ed2013441f"),
+    name: 'Python',
+    duration: 35,
+    students_list: {
+      _id: ObjectId("6396e540ff1282ed2013441d"),
+      name: 'Anton Sidorov',
+      courses: [ 'Java', 'Python' ]
+    }
+  }
+]
+
+***********************************************************************************
+path - в качестве рагумента мы указыаем название поля, значение которого нам требуется развернуть
+$unwind - разворачивает список вложенных студентов в отдельные пары обьектов КУРС + СТУДЕНТ
+***********************************************************************************
+
+================================================== $group - группировка по курсам и подсчет средних возрастов
+db.courses.aggregate([{
+...      $lookup: {
+...              from: "students",
+...              localField: "name",
+...              foreignField: "courses",
+...              as: "students_list"
+...      }
+... },
+	{
+		$unwind: {
+			path: "$students_list"
+		}
+	}, {
+		$group: {
+			_id: {name: "$name"}, 
+			avgage: {$avg: "$students_list.age"}, 
+			minage: {$min: "students_list.age"}, 
+			maxage: {$max: "students_list.age"}
+}}])
+
+==================================== результат запроса
+			**********************
+Результат отобразился со значением null, потому что не у всех студентов указан возраст
+в коллекции students
+			**********************
+
+
+[
+  {
+    _id: { name: 'Java' },
+    avgage: null,
+    minage: 'students_list.age',
+    maxage: 'students_list.age'
+  },
+  {
+    _id: { name: 'Python' },
+    avgage: null,
+    minage: 'students_list.age',
+    maxage: 'students_list.age'
+  }
+]
+
+========================================
+
+
+
+
