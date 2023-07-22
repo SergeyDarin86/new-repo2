@@ -38,7 +38,7 @@
 ⏬
 
    <h2 align="center">
-    <img src="/GifDemoVideo.gif">
+    <img src="/FinalGifVideo.gif">
   </h2>
 
   <h2 align="center">Технологии в проекте</h2>
