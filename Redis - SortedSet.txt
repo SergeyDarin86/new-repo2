@@ -3,7 +3,7 @@
 NewYork 2350$
 ---------------
 >>>>>>> Stashed changes
-Moscow 7000
+Moscow 15000
 Sankt Peterburg 7300
 Ekaterinburg 6000
 Kazan - 5000
