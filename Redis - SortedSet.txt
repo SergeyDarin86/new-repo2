@@ -1,4 +1,4 @@
-NewYork 2300$
+NewYork 3345$
 ---------------
 Moscow 7000
 Sankt Peterburg 7300
