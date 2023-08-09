@@ -1,3 +1,8 @@
+<<<<<<< Updated upstream
+=======
+NewYork 2350$
+---------------
+>>>>>>> Stashed changes
 Moscow 7000
 Sankt Peterburg 7300
 Ekaterinburg 6000
