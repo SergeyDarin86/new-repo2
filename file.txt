@@ -1,0 +1,5 @@
+{
+"name" : "Sergey",
+"age" : 36,
+"sex" : "male"
+}
