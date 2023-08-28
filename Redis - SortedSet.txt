@@ -1,6 +1,4 @@
-NewYork 2350$
-Ottava 3400$
----------------
+
 >>>>>>> Stashed changes
 Moscow 15000
 Sankt Peterburg 7300
